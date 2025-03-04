@@ -26,20 +26,7 @@
 - ⚡ **样式隔离**：所有样式都有唯一前缀，避免样式冲突
 
 ## 安装
-
-使用 npm:
-
-```bash
-npm install react-tabs --save
-```
-
-或者使用 yarn:
-
-```bash
-yarn add react-tabs
-```
-
-也可以直接从GitHub克隆代码:
+GitHub克隆代码:
 
 ```bash
 git clone https://github.com/Duanhsbs88/ReactTabs.git
