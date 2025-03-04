@@ -1,6 +1,6 @@
 # React Tabs 组件
 
-一个功能丰富、高度可定制的 React 标签页组件，模仿 ElementUI 的设计风格，提供丰富的交互体验和美观的 UI 效果。
+一个功能丰富、高度可定制的 React 标签页组件，提供丰富的交互体验和美观的 UI 效果。
 
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-brightgreen?logo=github)](https://github.com/Duanhsbs88/ReactTabs.git)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -26,20 +26,7 @@
 - ⚡ **样式隔离**：所有样式都有唯一前缀，避免样式冲突
 
 ## 安装
-
-使用 npm:
-
-```bash
-npm install react-tabs --save
-```
-
-或者使用 yarn:
-
-```bash
-yarn add react-tabs
-```
-
-也可以直接从GitHub克隆代码:
+GitHub克隆代码:
 
 ```bash
 git clone https://github.com/Duanhsbs88/ReactTabs.git
@@ -49,8 +36,8 @@ git clone https://github.com/Duanhsbs88/ReactTabs.git
 
 ```jsx
 import React from 'react';
-import { Tabs } from 'react-tabs';
-import 'react-tabs/dist/styles.css';
+import Tabs from './Tabs';
+import './Tabs.css';
 
 function App() {
   const handleChange = (key) => {
