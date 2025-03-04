@@ -36,8 +36,8 @@ git clone https://github.com/Duanhsbs88/ReactTabs.git
 
 ```jsx
 import React from 'react';
-import Tabs from './Tabs';
-import './Tabs.css';
+import { Tabs } from 'react-tabs';
+import 'react-tabs/dist/styles.css';
 
 function App() {
   const handleChange = (key) => {
