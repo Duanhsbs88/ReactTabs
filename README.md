@@ -1,6 +1,6 @@
 # React Tabs 组件
 
-一个功能丰富、高度可定制的 React 标签页组件，模仿 ElementUI 的设计风格，提供丰富的交互体验和美观的 UI 效果。
+一个功能丰富、高度可定制的 React 标签页组件，提供丰富的交互体验和美观的 UI 效果。
 
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-brightgreen?logo=github)](https://github.com/Duanhsbs88/ReactTabs.git)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
