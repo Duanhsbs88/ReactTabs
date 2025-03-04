@@ -1,0 +1,281 @@
+/* 主题颜色配置 - CSS变量 */
+.my-tabs-container {
+  --tabs-primary-color: #409eff;
+  --tabs-primary-light: rgba(64, 158, 255, 0.1);
+  --tabs-primary-glow: rgba(64, 158, 255, 0.15);
+  --tabs-text-color: #303133;
+  --tabs-text-light: #606266;
+  --tabs-text-lighter: #909399;
+  --tabs-border-color: #e4e7ed;
+  --tabs-bg-color: #fff;
+  --tabs-bg-light: #f5f7fa;
+  --tabs-shadow-color: rgba(0, 0, 0, 0.05);
+  --tabs-danger-color: #f56c6c;
+  --tabs-disabled-color: #c0c4cc;
+}
+
+/* 标签页容器 */
+.my-tabs-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  border-bottom: none;
+}
+
+/* 标签导航部分容器 */
+.my-tabs-container > div:not(.my-tabs-content) {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid var(--tabs-border-color);
+}
+
+/* 标签导航包装器 */
+.my-tabs-nav-wrap {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 标签导航区域 */
+.my-tabs-nav {
+  display: flex;
+  white-space: nowrap;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  transform: translateX(0);
+}
+
+/* 标签项 */
+.my-tabs-item {
+  position: relative;
+  padding: 0 20px;
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), 
+              background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  white-space: nowrap;
+  color: var(--tabs-text-color);
+  user-select: none;
+  display: flex;
+  align-items: center; /* 让内容垂直居中 */
+}
+
+.my-tabs-item:hover {
+  color: var(--tabs-primary-color);
+}
+
+/* 选中标签样式 */
+.my-tabs-item.active {
+  color: var(--tabs-primary-color);
+  font-weight: 500;
+  background-color: var(--tabs-primary-light);
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 -2px 8px var(--tabs-primary-glow);
+  position: relative;
+  z-index: 2; /* 确保选中的标签在最上层 */
+  text-shadow: 0 0 1px var(--tabs-primary-glow);
+  letter-spacing: 0.3px; /* 字间距略微增加，提高可读性 */
+  animation: my-tabs-pulseGlow 2s ease-in-out infinite;
+}
+
+.my-tabs-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px; /* 加粗底部指示线 */
+  background-color: var(--tabs-primary-color);
+  animation: my-tabs-slideIn 0.3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  transform-origin: left;
+  box-shadow: 0 0 6px var(--tabs-primary-glow); /* 添加发光效果 */
+}
+
+/* 拖动时的临时样式，不会持久保留 */
+.my-tabs-item.dragging {
+  background-color: #f0f9ff;
+  opacity: 0.8;
+  box-shadow: 0 2px 4px var(--tabs-shadow-color);
+  z-index: 10;
+}
+
+/* 拖拽经过样式，只在拖拽过程中显示 */
+.my-tabs-item.drag-over {
+  border-left: 2px solid var(--tabs-primary-color);
+}
+
+/* 滑动按钮 */
+.my-tabs-nav-prev,
+.my-tabs-nav-next {
+  position: relative;
+  width: 30px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  color: var(--tabs-text-lighter);
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  display: none; /* 默认隐藏，JavaScript控制显示 */
+  /* 防止文本被选中 */
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.my-tabs-nav-prev:hover,
+.my-tabs-nav-next:hover {
+  color: var(--tabs-primary-color);
+  background-color: var(--tabs-primary-light);
+}
+
+.my-tabs-nav-button {
+  font-size: 12px;
+  display: block;
+  height: 100%;
+  /* 防止文本被选中 */
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: pointer;
+}
+
+/* 内容区域 */
+.my-tabs-content {
+  padding: 0;
+  margin-top: 20px;
+  width: 100%;
+  position: relative;
+}
+
+.my-tabs-pane {
+  display: none;
+  padding: 20px;
+  border: 1px solid var(--tabs-border-color);
+  border-radius: 4px;
+  background-color: var(--tabs-bg-color);
+  box-shadow: 0 1px 2px var(--tabs-shadow-color);
+  animation: my-tabs-fadeIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  line-height: 1.8;
+}
+
+.my-tabs-pane h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: var(--tabs-text-color);
+}
+
+.my-tabs-pane p {
+  margin-bottom: 15px;
+  color: var(--tabs-text-light);
+}
+
+.my-tabs-pane div {
+  background-color: var(--tabs-bg-light);
+  margin-top: 10px;
+}
+
+.my-tabs-pane.active {
+  display: block;
+  animation: my-tabs-fadeIn 0.4s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+}
+
+/* 滑动箭头的禁用状态 */
+.my-tabs-nav-disabled {
+  color: var(--tabs-disabled-color);
+  cursor: not-allowed;
+}
+
+/* 左导航按钮位置 */
+.my-tabs-nav-prev {
+  left: 0;
+}
+
+/* 右导航按钮位置 */
+.my-tabs-nav-next {
+  right: 0;
+}
+
+/* 淡入动画 */
+@keyframes my-tabs-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 滑入动画 */
+@keyframes my-tabs-slideIn {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* 关闭按钮样式 */
+.my-tabs-close-icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8px;
+  width: 16px;
+  height: 16px;
+  line-height: 1;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--tabs-text-lighter);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  opacity: 0; /* 默认隐藏 */
+}
+
+/* 标签被选中时显示关闭按钮 */
+.my-tabs-item.active .my-tabs-close-icon {
+  opacity: 0.6;
+  color: var(--tabs-primary-color);
+}
+
+/* 鼠标悬停在标签上时显示关闭按钮 */
+.my-tabs-item:hover .my-tabs-close-icon {
+  opacity: 0.6;
+}
+
+/* 鼠标悬停在关闭按钮上时样式 */
+.my-tabs-close-icon:hover {
+  opacity: 1 !important;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: var(--tabs-danger-color);
+  transform: scale(1.1);
+}
+
+/* 被选中标签的关闭按钮悬停样式 */
+.my-tabs-item.active .my-tabs-close-icon:hover {
+  background-color: var(--tabs-primary-light);
+  color: var(--tabs-danger-color);
+}
+
+/* 标签动画效果 */
+@keyframes my-tabs-pulseGlow {
+  0% {
+    box-shadow: 0 -2px 8px var(--tabs-primary-glow);
+  }
+  50% {
+    box-shadow: 0 -2px 12px var(--tabs-primary-glow);
+  }
+  100% {
+    box-shadow: 0 -2px 8px var(--tabs-primary-glow);
+  }
+} 
