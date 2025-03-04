@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Tabs from './Tabs';
-import './Tabs.css';
+import { Tabs } from '../components/tabs';
 
 /**
  * TabsDemo 组件

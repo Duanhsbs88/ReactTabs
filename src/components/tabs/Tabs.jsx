@@ -58,6 +58,9 @@ const Tabs = ({ children, defaultActiveKey, onChange, onReorder, onClose, closab
   const currentTranslateXRef = useRef(currentTranslateX);
   // 组件容器ref
   const containerRef = useRef(null);
+  // 滚动按钮ref
+  const prevButtonRef = useRef(null);
+  const nextButtonRef = useRef(null);
 
   /**
    * 同步translateX的状态到ref
@@ -131,9 +134,9 @@ const Tabs = ({ children, defaultActiveKey, onChange, onReorder, onClose, closab
     const navWidth = tabsNavRef.current.scrollWidth;
     const wrapWidth = tabsNavWrapRef.current.clientWidth;
     
-    // 获取左右滚动按钮元素
-    const prevButton = document.querySelector('.my-tabs-nav-prev');
-    const nextButton = document.querySelector('.my-tabs-nav-next');
+    // 使用ref引用而不是querySelector
+    const prevButton = prevButtonRef.current;
+    const nextButton = nextButtonRef.current;
     
     let showLeft = false;
     let showRight = false;
@@ -628,7 +631,7 @@ const Tabs = ({ children, defaultActiveKey, onChange, onReorder, onClose, closab
     <div className="my-tabs-container" ref={containerRef}>
       <div>
         {/* 左滑动按钮 */}
-        <div className="my-tabs-nav-prev">
+        <div className="my-tabs-nav-prev" ref={prevButtonRef}>
           <span 
             className="my-tabs-nav-button"
             onMouseDown={() => startContinuousScroll('prev')}
@@ -678,7 +681,7 @@ const Tabs = ({ children, defaultActiveKey, onChange, onReorder, onClose, closab
         </div>
         
         {/* 右滑动按钮 */}
-        <div className="my-tabs-nav-next">
+        <div className="my-tabs-nav-next" ref={nextButtonRef}>
           <span 
             className="my-tabs-nav-button"
             onMouseDown={() => startContinuousScroll('next')}
